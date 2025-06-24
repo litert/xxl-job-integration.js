@@ -85,7 +85,7 @@ npm i @litert/xxl-job-integration --save
 
     A quick start guide to get you started with the library.
 
-- [API Documentation (en-US)](https://litert.org/projects/xxl-job-integration.js/api.html)
+- [API Documentation (en-US)](https://litert.org/projects/xxl-job-integration.js/api/)
 
     The API documentation of the library, including all the classes and methods.
 
