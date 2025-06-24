@@ -48,13 +48,13 @@ This library provides following components for integration with XXL Job:
 
         The component that listens for HTTP requests from the XXL Job Admin server.
 
-        - [Using `node:http` module](../../src/lib/Listener/NodeHttp.ts)
+        - [Using `node:http` module](https://litert.org/projects/xxl-job-integration.js/api/Listener/NodeHttp/)
 
             ```ts
             import * as NodeHttpListener from '@litert/xxl-job-integration/lib/Listener/NodeHttp';
             ```
 
-        - [Using `fastify` framework](../../src/lib/Listener/Fastify.ts)
+        - [Using `fastify` framework](https://litert.org/projects/xxl-job-integration.js/api/Listener/Fastify/)
 
             ```ts
             import * as FastifyListener from '@litert/xxl-job-integration/lib/Listener/Fastify';
@@ -64,13 +64,13 @@ This library provides following components for integration with XXL Job:
 
         The component that manages the logs of the executed tasks.
 
-        - [MemoryLogManager](../../src/lib/LogManagers/MemoryLogManager.ts)
+        - [MemoryLogManager](https://litert.org/projects/xxl-job-integration.js/api/LogManagers/MemoryLogManager/)
 
             ```ts
             import * as MemoryLogs from '@litert/xxl-job-integration/lib/LogManagers/MemoryLogManager';
             ```
 
-        - [FileLogManager](../../src/lib/LogManagers/FileLogManager.ts)
+        - [FileLogManager](https://litert.org/projects/xxl-job-integration.js/api/LogManagers/FileLogManager/)
 
             ```ts
             import * as FileLogs from '@litert/xxl-job-integration/lib/LogManagers/FileLogManager';
@@ -82,13 +82,13 @@ This library provides following components for integration with XXL Job:
 
         The XXL-Job admin server supports multiple types of tasks. By now, the built-in job runner contains the following types:
 
-        - [Bean Runner](../../src/lib/JobRunner/Bean.ts)
+        - [Bean Runner](https://litert.org/projects/xxl-job-integration.js/api/JobRunner/Bean/)
 
             ```ts
             import { XxlJobBeanHandlerRunner } from '@litert/xxl-job-integration/lib/JobRunner/Bean';
             ```
 
-        - [NodeJS In-Process Runner](../../src/lib/JobRunner/NodeJsInProcess.ts)
+        - [NodeJS In-Process Runner](https://litert.org/projects/xxl-job-integration.js/api/JobRunner/NodeJsInProcess/)
 
             ```ts
             import { XxlJobNodeJsInProcessHandlerRunner } from '@litert/xxl-job-integration/lib/JobRunner/NodeJsInProcess';
