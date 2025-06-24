@@ -1,0 +1,19 @@
+name: xxl-job
+services:
+  xxl-job-admin:
+    image: xuxueli/xxl-job-admin:$XXL_JOB_ADMIN_VERSION
+    container_name: xxl-job-admin.loc
+    restart: unless-stopped
+    hostname: xxl-job-admin.loc
+    env_file:
+      - ./.env
+    volumes:
+      - ./data/logs:/data/applogs
+      - ./data/xxl-job/:/xxl-job
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://${MYSQL_SERVER_HOSTNAME}:${MYSQL_SERVER_PORT}/${MYSQL_SERVER_DATABASE}?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
+      - SPRING_DATASOURCE_USERNAME=${MYSQL_SERVER_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${MYSQL_SERVER_PASSWORD}
+      - SERVER_PORT=7070
+      - PARAMS=--xxl.job.accessToken=local-xxl-job-admin-server-auth
+    network_mode: host

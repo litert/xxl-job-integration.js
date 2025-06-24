@@ -1,0 +1,58 @@
+{
+  "name": "@litert/xxl-job-integration",
+  "version": "1.0.0",
+  "description": "A lightweight integration of XXL-Job for NodeJS.",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "typings": "./lib/index.d.ts",
+  "scripts": {
+    "prepublishOnly": "npm run rebuild",
+    "build": "tsc -v && tsc -p .",
+    "build-watch": "tsc -v && tsc -w -p .",
+    "rebuild": "npm run clean && npm run lint && npm run build",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "clean": "rm -rf lib examples test tools",
+    "lint": "./utils/eslint.sh",
+    "prepare": "husky",
+    "test": "node --enable-source-maps --test --experimental-test-coverage lib/**/*.test.js lib/*.js"
+  },
+  "keywords": [
+    "litert",
+    "schedule",
+    "timer",
+    "task",
+    "job",
+    "xxl-job"
+  ],
+  "author": "Angus.Fenying <fenying@litert.org> (https://fenying.net)",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/litert/xxl-job-integration.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/litert/xxl-job-integration.js/issues"
+  },
+  "homepage": "https://github.com/litert/xxl-job-integration.js#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@litert/eslint-plugin-rules": "^0.3.1",
+    "@litert/typeguard": "^1.4.0",
+    "@types/node": "^22.10.2",
+    "fastify": "^5.3.3",
+    "husky": "^9.1.7",
+    "typedoc": "^0.28.5",
+    "typedoc-plugin-markdown": "^4.6.4",
+    "typedoc-plugin-no-inherit": "^1.6.1",
+    "typedoc-vitepress-theme": "^1.1.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@litert/utils-async": "^1.2.1",
+    "undici": "^7.10.0"
+  }
+}
