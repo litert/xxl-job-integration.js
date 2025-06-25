@@ -52,7 +52,9 @@ class XxlJobExecutor extends EventEmitter<dL.IExecutorEvents> implements dL.IExe
     private readonly _logMgr: dL.ILogManager;
 
     public constructor(opts: IExecutorOptions) {
+
         super();
+
         this._adminApiCli = opts.adminApiClient;
         this._logMgr = opts.logManager;
 
@@ -120,6 +122,7 @@ class XxlJobExecutor extends EventEmitter<dL.IExecutorEvents> implements dL.IExe
 
             queue.on('error', (e) => { this.emit('error', e); });
             queue.on('empty', () => { delete this._jobQueues[jobId]; });
+            queue.on('task_error', (t, e) => { this.emit('task_error', t, e); });
 
             this._jobQueues[jobId] = queue;
         }

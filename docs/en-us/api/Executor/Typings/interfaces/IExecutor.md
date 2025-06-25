@@ -2,7 +2,7 @@
 
 # Interface: IExecutor
 
-Defined in: [src/lib/Executor/Typings.ts:276](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L276)
+Defined in: [src/lib/Executor/Typings.ts:282](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L282)
 
 The interface for the executor that process the tasks from the xxl-job-admin.
 
@@ -10,7 +10,11 @@ The interface for the executor that process the tasks from the xxl-job-admin.
 
 - error
 
-    When an error occurs during the registration or heartbeat process.
+    When an error occurs insides the executor.
+
+- task_error
+
+    When an error occurs during executing a task.
 
 ## Extends
 
@@ -38,11 +42,11 @@ Defined in: node\_modules/@types/node/events.d.ts:136
 
 ##### event
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 ##### args
 
-...`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] : `never`
+...`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] : `never`
 
 #### Returns
 
@@ -72,11 +76,11 @@ Alias for `emitter.on(eventName, listener)`.
 
 ##### eventName
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 ##### listener
 
-`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
 
 #### Returns
 
@@ -96,7 +100,7 @@ v0.1.26
 
 > **checkJobStatus**(`jobId`): [`IJobOpResult`](IJobOpResult.md)
 
-Defined in: [src/lib/Executor/Typings.ts:292](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L292)
+Defined in: [src/lib/Executor/Typings.ts:298](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L298)
 
 Detects if a job is running or not (`/idleBeat` API).
 
@@ -170,11 +174,11 @@ myEmitter.emit('event', 1, 2, 3, 4, 5);
 
 ##### eventName
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 ##### args
 
-...`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] : `never`
+...`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] : `never`
 
 #### Returns
 
@@ -194,7 +198,7 @@ v0.1.26
 
 > **enqueueTask**(`opts`): [`IJobOpResult`](IJobOpResult.md)
 
-Defined in: [src/lib/Executor/Typings.ts:299](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L299)
+Defined in: [src/lib/Executor/Typings.ts:305](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L305)
 
 Starts executing a job with the given options.
 
@@ -214,7 +218,7 @@ The options for starting the job, from the `/run` API.
 
 ### eventNames()
 
-> **eventNames**(): `"error"`[]
+> **eventNames**(): (`"error"` \| `"task_error"`)[]
 
 Defined in: node\_modules/@types/node/events.d.ts:922
 
@@ -237,7 +241,7 @@ console.log(myEE.eventNames());
 
 #### Returns
 
-`"error"`[]
+(`"error"` \| `"task_error"`)[]
 
 #### Since
 
@@ -276,7 +280,7 @@ v1.0.0
 
 > **getTaskLog**(`taskId`, `startLine`, `datetime`): `Promise`\<[`IJobOpResult`](IJobOpResult.md)\<[`ILogRange`](ILogRange.md)\>\>
 
-Defined in: [src/lib/Executor/Typings.ts:313](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L313)
+Defined in: [src/lib/Executor/Typings.ts:319](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L319)
 
 Reads the log for a specific task, starting from a given line number and datetime.
 
@@ -310,7 +314,7 @@ The datetime when the task started.
 
 > **killJob**(`jobId`): [`IJobOpResult`](IJobOpResult.md)
 
-Defined in: [src/lib/Executor/Typings.ts:304](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L304)
+Defined in: [src/lib/Executor/Typings.ts:310](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L310)
 
 Stop the currently running task and the queued tasks of the specified job ID.
 
@@ -348,11 +352,11 @@ in the list of the listeners of the event.
 
 The name of the event being listened for
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 ##### listener?
 
-`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
 
 The event handler function
 
@@ -372,7 +376,7 @@ v3.2.0
 
 ### listeners()
 
-> **listeners**\<`K`\>(`eventName`): `K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
+> **listeners**\<`K`\>(`eventName`): `K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
 
 Defined in: node\_modules/@types/node/events.d.ts:787
 
@@ -396,11 +400,11 @@ console.log(util.inspect(server.listeners('connection')));
 
 ##### eventName
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 #### Returns
 
-`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
+`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
 
 #### Since
 
@@ -430,11 +434,11 @@ Alias for `emitter.removeListener()`.
 
 ##### eventName
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 ##### listener
 
-`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
 
 #### Returns
 
@@ -495,11 +499,11 @@ myEE.emit('foo');
 
 The name of the event.
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 ##### listener
 
-`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
 
 The callback function
 
@@ -560,11 +564,11 @@ myEE.emit('foo');
 
 The name of the event.
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 ##### listener
 
-`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
 
 The callback function
 
@@ -613,11 +617,11 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 The name of the event.
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 ##### listener
 
-`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
 
 The callback function
 
@@ -664,11 +668,11 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 The name of the event.
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 ##### listener
 
-`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
 
 The callback function
 
@@ -688,7 +692,7 @@ v6.0.0
 
 ### rawListeners()
 
-> **rawListeners**\<`K`\>(`eventName`): `K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
+> **rawListeners**\<`K`\>(`eventName`): `K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
 
 Defined in: node\_modules/@types/node/events.d.ts:818
 
@@ -730,11 +734,11 @@ emitter.emit('log');
 
 ##### eventName
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 #### Returns
 
-`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
+`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
 
 #### Since
 
@@ -750,7 +754,7 @@ v9.4.0
 
 > **registerRunner**(`runners`): `this`
 
-Defined in: [src/lib/Executor/Typings.ts:320](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L320)
+Defined in: [src/lib/Executor/Typings.ts:326](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L326)
 
 Register a runner for a specific type of job.
 
@@ -898,11 +902,11 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 ##### eventName
 
-`"error"` | `K`
+keyof IExecutorEvents | `K`
 
 ##### listener
 
-`K` *extends* `"error"` ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
 
 #### Returns
 
@@ -955,7 +959,7 @@ v0.3.5
 
 > **validateApiToken**(`token`): `boolean`
 
-Defined in: [src/lib/Executor/Typings.ts:283](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L283)
+Defined in: [src/lib/Executor/Typings.ts:289](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L289)
 
 Validate if the given API token is valid.
 

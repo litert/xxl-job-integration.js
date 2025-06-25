@@ -4,7 +4,7 @@
 
 > **createExecutor**(`opts`): [`IExecutor`](../../Typings/interfaces/IExecutor.md)
 
-Defined in: [src/lib/Executor/Executor.ts:200](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Executor.ts#L200)
+Defined in: [src/lib/Executor/Executor.ts:203](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Executor.ts#L203)
 
 ## Parameters
 

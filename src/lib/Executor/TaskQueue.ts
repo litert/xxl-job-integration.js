@@ -34,6 +34,8 @@ interface IQueueEvents {
 
     error: [error: unknown];
 
+    ['task_error']: [task: dL.IRunTaskArgs, error: unknown];
+
     empty: [];
 }
 
@@ -295,7 +297,7 @@ export class XxlJobTaskQueue extends EventEmitter<IQueueEvents> {
             catch (e) {
 
                 this._submitTaskResult(JOB_STARTED_AT, [task.taskId], e as Error);
-                this.emit('error', e);
+                this.emit('task_error', task, e);
                 continue;
             }
             finally {

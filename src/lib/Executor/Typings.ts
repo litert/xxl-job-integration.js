@@ -262,6 +262,8 @@ export interface ILogManager {
 export interface IExecutorEvents {
 
     error: [error: unknown];
+
+    ['task_error']: [task: IRunTaskArgs, error: unknown];
 }
 
 /**
@@ -271,7 +273,11 @@ export interface IExecutorEvents {
  *
  * - error
  *
- *     When an error occurs during the registration or heartbeat process.
+ *     When an error occurs insides the executor.
+ *
+ * - task_error
+ *
+ *     When an error occurs during executing a task.
  */
 export interface IExecutor extends EventEmitter<IExecutorEvents> {
 
