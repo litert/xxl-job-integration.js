@@ -6,6 +6,9 @@ export default defineConfig({
   title: "@litert/xxl-job-integration",
   description: "A lightweight integration of XXL-Job for NodeJS.",
   base: '/projects/xxl-job-integration.js/',
+  sitemap: {
+    hostname: 'https://litert.org/projects/xxl-job-integration.js/'
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
