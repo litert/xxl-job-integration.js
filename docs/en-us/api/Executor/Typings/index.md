@@ -11,6 +11,7 @@
 - [IJobOpResult](interfaces/IJobOpResult.md)
 - [IJobRunner](interfaces/IJobRunner.md)
 - [ILogManager](interfaces/ILogManager.md)
+- [ILogManagerEvents](interfaces/ILogManagerEvents.md)
 - [ILogRange](interfaces/ILogRange.md)
 - [IRunnerPrepareResult](interfaces/IRunnerPrepareResult.md)
 

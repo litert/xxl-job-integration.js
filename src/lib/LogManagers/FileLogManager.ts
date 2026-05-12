@@ -224,6 +224,8 @@ export const DEFAULT_MAX_LINE_AT_ONCE = 1000;
  * This class manages log files for different tasks, allowing you to open, close, write logs, and read logs by range.
  *
  * This class does not handle log file cleanup, so you may want to use `FileLogCleaner` to manage old log files.
+ *
+ * @noInheritDoc
  */
 export class FileLogManager extends EventEmitter<LibXJ.ILogManagerEvents> implements LibXJ.ILogManager {
 

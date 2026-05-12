@@ -10,7 +10,7 @@ The options for creating a server listener.
 
 ### backlog?
 
-> `optional` **backlog**: `number`
+> `optional` **backlog?**: `number`
 
 Defined in: [src/lib/Listener/NodeHttp.ts:226](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Listener/NodeHttp.ts#L226)
 

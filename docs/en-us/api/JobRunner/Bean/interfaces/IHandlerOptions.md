@@ -20,7 +20,7 @@ The handler function that will be called when the job is executed.
 
 ### maxQueueDepth?
 
-> `optional` **maxQueueDepth**: `number`
+> `optional` **maxQueueDepth?**: `number`
 
 Defined in: [src/lib/JobRunner/Bean.ts:46](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/JobRunner/Bean.ts#L46)
 

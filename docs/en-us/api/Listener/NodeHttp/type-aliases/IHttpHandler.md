@@ -1,6 +1,6 @@
 [Documents for @litert/xxl-job-integration](../../../index.md) / [Listener/NodeHttp](../index.md) / IHttpHandler
 
-# Type Alias: IHttpHandler()
+# Type Alias: IHttpHandler
 
 > **IHttpHandler** = (`request`, `reply`) => `void` \| `Promise`\<`void`\>
 

@@ -2,7 +2,7 @@
 
 # Function: serve()
 
-> **serve**(`fastify`, `executor`, `prefix`): `void`
+> **serve**(`fastify`, `executor`, `prefix?`): `void`
 
 Defined in: [src/lib/Listener/Fastify.ts:52](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Listener/Fastify.ts#L52)
 
@@ -24,7 +24,7 @@ The Fastify instance to bind the API to.
 
 The XXL-Job executor instance to handle the API requests.
 
-### prefix
+### prefix?
 
 `string` = `''`
 

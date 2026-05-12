@@ -17,13 +17,13 @@ WATCH OUT: Don't run any untrusted code here, as it will possibly cause RCE
 
 ### Constructor
 
-> **new XxlJobNodeJsInProcessHandlerRunner**(`opts`): `XxlJobNodeJsInProcessHandlerRunner`
+> **new XxlJobNodeJsInProcessHandlerRunner**(`opts?`): `XxlJobNodeJsInProcessHandlerRunner`
 
 Defined in: [src/lib/JobRunner/NodeJsInProcess.ts:107](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/JobRunner/NodeJsInProcess.ts#L107)
 
 #### Parameters
 
-##### opts
+##### opts?
 
 [`IRunnerOptions`](../interfaces/IRunnerOptions.md) = `{}`
 
@@ -49,7 +49,7 @@ The type of the jobs that this runner can handle.
 
 ### prepare()
 
-> **prepare**(`args`): `null` \| [`IRunnerPrepareResult`](../../../Executor/Typings/interfaces/IRunnerPrepareResult.md)
+> **prepare**(`args`): [`IRunnerPrepareResult`](../../../Executor/Typings/interfaces/IRunnerPrepareResult.md) \| `null`
 
 Defined in: [src/lib/JobRunner/NodeJsInProcess.ts:128](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/JobRunner/NodeJsInProcess.ts#L128)
 
@@ -63,7 +63,7 @@ Prepare to run the task with the given arguments.
 
 #### Returns
 
-`null` \| [`IRunnerPrepareResult`](../../../Executor/Typings/interfaces/IRunnerPrepareResult.md)
+[`IRunnerPrepareResult`](../../../Executor/Typings/interfaces/IRunnerPrepareResult.md) \| `null`
 
 null if the task cannot be prepared, or an object containing settings for the task.
 

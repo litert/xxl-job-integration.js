@@ -10,7 +10,7 @@ The options for the Node.js script runner.
 
 ### cacheTtl?
 
-> `optional` **cacheTtl**: `number`
+> `optional` **cacheTtl?**: `number`
 
 Defined in: [src/lib/JobRunner/NodeJsInProcess.ts:53](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/JobRunner/NodeJsInProcess.ts#L53)
 
@@ -26,7 +26,7 @@ The time-to-live (TTL) of each cached script in seconds.
 
 ### envData?
 
-> `optional` **envData**: `IScriptEnvData` \| () => `IScriptEnvData`
+> `optional` **envData?**: `IScriptEnvData` \| (() => `IScriptEnvData`)
 
 Defined in: [src/lib/JobRunner/NodeJsInProcess.ts:46](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/JobRunner/NodeJsInProcess.ts#L46)
 
@@ -42,7 +42,7 @@ The (generator of) environment data that will be passed to the js script when it
 
 ### gcReservedPercentage?
 
-> `optional` **gcReservedPercentage**: `number`
+> `optional` **gcReservedPercentage?**: `number`
 
 Defined in: [src/lib/JobRunner/NodeJsInProcess.ts:68](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/JobRunner/NodeJsInProcess.ts#L68)
 
@@ -59,7 +59,7 @@ due to the cache size limit.
 
 ### gcRunRatio?
 
-> `optional` **gcRunRatio**: `number`
+> `optional` **gcRunRatio?**: `number`
 
 Defined in: [src/lib/JobRunner/NodeJsInProcess.ts:82](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/JobRunner/NodeJsInProcess.ts#L82)
 
@@ -75,7 +75,7 @@ The ratio of the garbage collector to run.
 
 ### maxCacheScripts?
 
-> `optional` **maxCacheScripts**: `number`
+> `optional` **maxCacheScripts?**: `number`
 
 Defined in: [src/lib/JobRunner/NodeJsInProcess.ts:60](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/JobRunner/NodeJsInProcess.ts#L60)
 
@@ -91,7 +91,7 @@ The maximum quantity of the cache for the scripts.
 
 ### maxQueueDepth?
 
-> `optional` **maxQueueDepth**: `number`
+> `optional` **maxQueueDepth?**: `number`
 
 Defined in: [src/lib/JobRunner/NodeJsInProcess.ts:75](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/JobRunner/NodeJsInProcess.ts#L75)
 

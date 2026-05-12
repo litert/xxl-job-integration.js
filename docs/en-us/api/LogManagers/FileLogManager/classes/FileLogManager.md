@@ -2,13 +2,17 @@
 
 # Class: FileLogManager
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:227](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L227)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:230](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L230)
 
 The implementation of the `ILogManager` interface that writes logs to files in a specified directory.
 
 This class manages log files for different tasks, allowing you to open, close, write logs, and read logs by range.
 
 This class does not handle log file cleanup, so you may want to use `FileLogCleaner` to manage old log files.
+
+## Extends
+
+- `EventEmitter`\<[`ILogManagerEvents`](../../../Executor/Typings/interfaces/ILogManagerEvents.md)\>
 
 ## Implements
 
@@ -20,7 +24,7 @@ This class does not handle log file cleanup, so you may want to use `FileLogClea
 
 > **new FileLogManager**(`opts`): `FileLogManager`
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:235](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L235)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:238](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L238)
 
 #### Parameters
 
@@ -32,13 +36,17 @@ Defined in: [src/lib/LogManagers/FileLogManager.ts:235](https://github.com/liter
 
 `FileLogManager`
 
+#### Overrides
+
+`EventEmitter<LibXJ.ILogManagerEvents>.constructor`
+
 ## Methods
 
 ### close()
 
 > **close**(`taskId`): `void`
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:268](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L268)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:280](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L280)
 
 Close the log section for the given task ID.
 
@@ -62,9 +70,9 @@ The task ID to close the log section for.
 
 ### get()
 
-> **get**(`taskId`, `startLine`): `Promise`\<`null` \| [`ILogRange`](../../../Executor/Typings/interfaces/ILogRange.md)\>
+> **get**(`taskId`, `startLine`): `Promise`\<[`ILogRange`](../../../Executor/Typings/interfaces/ILogRange.md) \| `null`\>
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:294](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L294)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:321](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L321)
 
 Read a range of log for the given task ID, by the start line and datetime.
 
@@ -87,7 +95,7 @@ The start line to read from.
 
 #### Returns
 
-`Promise`\<`null` \| [`ILogRange`](../../../Executor/Typings/interfaces/ILogRange.md)\>
+`Promise`\<[`ILogRange`](../../../Executor/Typings/interfaces/ILogRange.md) \| `null`\>
 
 #### Implementation of
 
@@ -99,7 +107,7 @@ The start line to read from.
 
 > **open**(`taskId`): `Promise`\<`void`\>
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:241](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L241)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:246](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L246)
 
 Initialize a log section for the given task ID.
 
@@ -125,7 +133,7 @@ The task ID to initialize the log section for.
 
 > **write**(`taskId`, `level`, `message`): `void`
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:283](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L283)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:295](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L295)
 
 Write a log message to the task log storage.
 

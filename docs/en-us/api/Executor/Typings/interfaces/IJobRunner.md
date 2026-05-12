@@ -20,7 +20,7 @@ The type of the jobs that this runner can handle.
 
 ### prepare()
 
-> **prepare**(`args`): `null` \| [`IRunnerPrepareResult`](IRunnerPrepareResult.md)
+> **prepare**(`args`): [`IRunnerPrepareResult`](IRunnerPrepareResult.md) \| `null`
 
 Defined in: [src/lib/Executor/Typings.ts:181](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L181)
 
@@ -34,7 +34,7 @@ Prepare to run the task with the given arguments.
 
 #### Returns
 
-`null` \| [`IRunnerPrepareResult`](IRunnerPrepareResult.md)
+[`IRunnerPrepareResult`](IRunnerPrepareResult.md) \| `null`
 
 null if the task cannot be prepared, or an object containing settings for the task.
 

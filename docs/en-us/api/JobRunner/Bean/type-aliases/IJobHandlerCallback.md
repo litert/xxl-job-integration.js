@@ -1,6 +1,6 @@
 [Documents for @litert/xxl-job-integration](../../../index.md) / [JobRunner/Bean](../index.md) / IJobHandlerCallback
 
-# Type Alias: IJobHandlerCallback()
+# Type Alias: IJobHandlerCallback
 
 > **IJobHandlerCallback** = (`ctx`) => `Promise`\<`void`\> \| `void`
 

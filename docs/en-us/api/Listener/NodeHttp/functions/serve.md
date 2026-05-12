@@ -2,7 +2,7 @@
 
 # Function: serve()
 
-> **serve**(`router`, `executor`, `prefix`): `void`
+> **serve**(`router`, `executor`, `prefix?`): `void`
 
 Defined in: [src/lib/Listener/NodeHttp.ts:50](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Listener/NodeHttp.ts#L50)
 
@@ -22,7 +22,7 @@ The HTTP router to register the API endpoints.
 
 The XXL-Job executor instance to handle the API requests.
 
-### prefix
+### prefix?
 
 `string` = `''`
 

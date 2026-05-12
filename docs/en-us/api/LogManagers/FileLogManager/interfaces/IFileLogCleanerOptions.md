@@ -2,7 +2,7 @@
 
 # Interface: IFileLogCleanerOptions
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:38](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L38)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:39](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L39)
 
 The options for the `FileLogCleaner` class.
 
@@ -12,7 +12,7 @@ The options for the `FileLogCleaner` class.
 
 > **logDir**: `string`
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:45](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L45)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:46](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L46)
 
 The path to the directory where the log files are stored.
 
@@ -24,7 +24,7 @@ This directory must be accessible and writable by the application.
 
 > **maxAgeMs**: `number`
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:56](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L56)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:57](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L57)
 
 The maximum age of log files to keep, in milliseconds.
 Files older than this will be deleted.
@@ -40,7 +40,7 @@ accumulate too many old log files, which may use up too much disk space.
 
 > **timerIntervalMs**: `number`
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:68](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L68)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:69](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L69)
 
 The interval at which to check for old log files, in milliseconds.
 

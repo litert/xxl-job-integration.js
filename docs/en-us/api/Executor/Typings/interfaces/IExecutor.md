@@ -2,7 +2,7 @@
 
 # Interface: IExecutor
 
-Defined in: [src/lib/Executor/Typings.ts:282](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L282)
+Defined in: [src/lib/Executor/Typings.ts:284](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L284)
 
 The interface for the executor that process the tasks from the xxl-job-admin.
 
@@ -24,15 +24,34 @@ The interface for the executor that process the tasks from the xxl-job-admin.
 
 ### \[captureRejectionSymbol\]()?
 
-> `optional` **\[captureRejectionSymbol\]**\<`K`\>(`error`, `event`, ...`args`): `void`
+> `optional` **\[captureRejectionSymbol\]**(`error`, `event`, ...`args`): `void`
 
-Defined in: node\_modules/@types/node/events.d.ts:136
+Defined in: node\_modules/@types/node/events.d.ts:87
 
-#### Type Parameters
+The `Symbol.for('nodejs.rejection')` method is called in case a
+promise rejection happens when emitting an event and
+`captureRejections` is enabled on the emitter.
+It is possible to use `events.captureRejectionSymbol` in
+place of `Symbol.for('nodejs.rejection')`.
 
-##### K
+```js
+import { EventEmitter, captureRejectionSymbol } from 'node:events';
 
-`K`
+class MyClass extends EventEmitter {
+  constructor() {
+    super({ captureRejections: true });
+  }
+
+  [captureRejectionSymbol](err,%20event,%20...args) {
+    console.log('rejection happened for', event, 'with', err, ...args);
+    this.destroy(err);
+  }
+
+  destroy(err) {
+    // Tear the resource down here.
+  }
+}
+```
 
 #### Parameters
 
@@ -42,15 +61,19 @@ Defined in: node\_modules/@types/node/events.d.ts:136
 
 ##### event
 
-keyof IExecutorEvents | `K`
+`string` \| `symbol`
 
 ##### args
 
-...`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] : `never`
+...`any`[]
 
 #### Returns
 
 `void`
+
+#### Since
+
+v13.4.0, v12.16.0
 
 #### Inherited from
 
@@ -60,27 +83,27 @@ keyof IExecutorEvents | `K`
 
 ### addListener()
 
-> **addListener**\<`K`\>(`eventName`, `listener`): `this`
+> **addListener**\<`E`\>(`eventName`, `listener`): `this`
 
-Defined in: node\_modules/@types/node/events.d.ts:597
+Defined in: node\_modules/@types/node/events.d.ts:92
 
 Alias for `emitter.on(eventName, listener)`.
 
 #### Type Parameters
 
-##### K
+##### E
 
-`K`
+`E` *extends* `string` \| `symbol`
 
 #### Parameters
 
 ##### eventName
 
-keyof IExecutorEvents | `K`
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
 ##### listener
 
-`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+(...`args`) => `void`
 
 #### Returns
 
@@ -100,7 +123,7 @@ v0.1.26
 
 > **checkJobStatus**(`jobId`): [`IJobOpResult`](IJobOpResult.md)
 
-Defined in: [src/lib/Executor/Typings.ts:298](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L298)
+Defined in: [src/lib/Executor/Typings.ts:300](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L300)
 
 Detects if a job is running or not (`/idleBeat` API).
 
@@ -122,11 +145,12 @@ The job ID to detect.
 
 ### emit()
 
-> **emit**\<`K`\>(`eventName`, ...`args`): `boolean`
+> **emit**\<`E`\>(`eventName`, ...`args`): `boolean`
 
-Defined in: node\_modules/@types/node/events.d.ts:859
+Defined in: node\_modules/@types/node/events.d.ts:134
 
-Synchronously calls each of the listeners registered for the event named `eventName`, in the order they were registered, passing the supplied arguments
+Synchronously calls each of the listeners registered for the event named
+`eventName`, in the order they were registered, passing the supplied arguments
 to each.
 
 Returns `true` if the event had listeners, `false` otherwise.
@@ -166,19 +190,19 @@ myEmitter.emit('event', 1, 2, 3, 4, 5);
 
 #### Type Parameters
 
-##### K
+##### E
 
-`K`
+`E` *extends* `string` \| `symbol`
 
 #### Parameters
 
 ##### eventName
 
-keyof IExecutorEvents | `K`
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
 ##### args
 
-...`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] : `never`
+...`E` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`E`\] : `E` *extends* keyof `EventEmitterEventMap` ? `EventEmitterEventMap`\[`E`\] : `any`[]
 
 #### Returns
 
@@ -198,7 +222,7 @@ v0.1.26
 
 > **enqueueTask**(`opts`): [`IJobOpResult`](IJobOpResult.md)
 
-Defined in: [src/lib/Executor/Typings.ts:305](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L305)
+Defined in: [src/lib/Executor/Typings.ts:307](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L307)
 
 Starts executing a job with the given options.
 
@@ -218,12 +242,12 @@ The options for starting the job, from the `/run` API.
 
 ### eventNames()
 
-> **eventNames**(): (`"error"` \| `"task_error"`)[]
+> **eventNames**(): (`string` \| `symbol`)[]
 
-Defined in: node\_modules/@types/node/events.d.ts:922
+Defined in: node\_modules/@types/node/events.d.ts:154
 
 Returns an array listing the events for which the emitter has registered
-listeners. The values in the array are strings or `Symbol`s.
+listeners.
 
 ```js
 import { EventEmitter } from 'node:events';
@@ -241,7 +265,7 @@ console.log(myEE.eventNames());
 
 #### Returns
 
-(`"error"` \| `"task_error"`)[]
+(`string` \| `symbol`)[]
 
 #### Since
 
@@ -257,10 +281,11 @@ v6.0.0
 
 > **getMaxListeners**(): `number`
 
-Defined in: node\_modules/@types/node/events.d.ts:774
+Defined in: node\_modules/@types/node/events.d.ts:161
 
 Returns the current max listener value for the `EventEmitter` which is either
-set by `emitter.setMaxListeners(n)` or defaults to EventEmitter.defaultMaxListeners.
+set by `emitter.setMaxListeners(n)` or defaults to
+`events.defaultMaxListeners`.
 
 #### Returns
 
@@ -280,7 +305,7 @@ v1.0.0
 
 > **getTaskLog**(`taskId`, `startLine`, `datetime`): `Promise`\<[`IJobOpResult`](IJobOpResult.md)\<[`ILogRange`](ILogRange.md)\>\>
 
-Defined in: [src/lib/Executor/Typings.ts:319](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L319)
+Defined in: [src/lib/Executor/Typings.ts:321](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L321)
 
 Reads the log for a specific task, starting from a given line number and datetime.
 
@@ -314,7 +339,7 @@ The datetime when the task started.
 
 > **killJob**(`jobId`): [`IJobOpResult`](IJobOpResult.md)
 
-Defined in: [src/lib/Executor/Typings.ts:310](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L310)
+Defined in: [src/lib/Executor/Typings.ts:312](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L312)
 
 Stop the currently running task and the queued tasks of the specified job ID.
 
@@ -332,9 +357,9 @@ Stop the currently running task and the queued tasks of the specified job ID.
 
 ### listenerCount()
 
-> **listenerCount**\<`K`\>(`eventName`, `listener?`): `number`
+> **listenerCount**\<`E`\>(`eventName`, `listener?`): `number`
 
-Defined in: node\_modules/@types/node/events.d.ts:868
+Defined in: node\_modules/@types/node/events.d.ts:170
 
 Returns the number of listeners listening for the event named `eventName`.
 If `listener` is provided, it will return how many times the listener is found
@@ -342,21 +367,21 @@ in the list of the listeners of the event.
 
 #### Type Parameters
 
-##### K
+##### E
 
-`K`
+`E` *extends* `string` \| `symbol`
 
 #### Parameters
 
 ##### eventName
 
-The name of the event being listened for
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
-keyof IExecutorEvents | `K`
+The name of the event being listened for
 
 ##### listener?
 
-`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+(...`args`) => `void`
 
 The event handler function
 
@@ -376,9 +401,9 @@ v3.2.0
 
 ### listeners()
 
-> **listeners**\<`K`\>(`eventName`): `K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
+> **listeners**\<`E`\>(`eventName`): (...`args`) => `void`[]
 
-Defined in: node\_modules/@types/node/events.d.ts:787
+Defined in: node\_modules/@types/node/events.d.ts:186
 
 Returns a copy of the array of listeners for the event named `eventName`.
 
@@ -392,19 +417,19 @@ console.log(util.inspect(server.listeners('connection')));
 
 #### Type Parameters
 
-##### K
+##### E
 
-`K`
+`E` *extends* `string` \| `symbol`
 
 #### Parameters
 
 ##### eventName
 
-keyof IExecutorEvents | `K`
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
 #### Returns
 
-`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
+(...`args`) => `void`[]
 
 #### Since
 
@@ -418,27 +443,27 @@ v0.1.26
 
 ### off()
 
-> **off**\<`K`\>(`eventName`, `listener`): `this`
+> **off**\<`E`\>(`eventName`, `listener`): `this`
 
-Defined in: node\_modules/@types/node/events.d.ts:747
+Defined in: node\_modules/@types/node/events.d.ts:191
 
 Alias for `emitter.removeListener()`.
 
 #### Type Parameters
 
-##### K
+##### E
 
-`K`
+`E` *extends* `string` \| `symbol`
 
 #### Parameters
 
 ##### eventName
 
-keyof IExecutorEvents | `K`
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
 ##### listener
 
-`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+(...`args`) => `void`
 
 #### Returns
 
@@ -456,14 +481,15 @@ v10.0.0
 
 ### on()
 
-> **on**\<`K`\>(`eventName`, `listener`): `this`
+> **on**\<`E`\>(`eventName`, `listener`): `this`
 
-Defined in: node\_modules/@types/node/events.d.ts:629
+Defined in: node\_modules/@types/node/events.d.ts:225
 
-Adds the `listener` function to the end of the listeners array for the event
-named `eventName`. No checks are made to see if the `listener` has already
-been added. Multiple calls passing the same combination of `eventName` and
-`listener` will result in the `listener` being added, and called, multiple times.
+Adds the `listener` function to the end of the listeners array for the
+event named `eventName`. No checks are made to see if the `listener` has
+already been added. Multiple calls passing the same combination of `eventName`
+and `listener` will result in the `listener` being added, and called, multiple
+times.
 
 ```js
 server.on('connection', (stream) => {
@@ -473,7 +499,8 @@ server.on('connection', (stream) => {
 
 Returns a reference to the `EventEmitter`, so that calls can be chained.
 
-By default, event listeners are invoked in the order they are added. The `emitter.prependListener()` method can be used as an alternative to add the
+By default, event listeners are invoked in the order they are added. The
+`emitter.prependListener()` method can be used as an alternative to add the
 event listener to the beginning of the listeners array.
 
 ```js
@@ -489,21 +516,21 @@ myEE.emit('foo');
 
 #### Type Parameters
 
-##### K
+##### E
 
-`K`
+`E` *extends* `string` \| `symbol`
 
 #### Parameters
 
 ##### eventName
 
-The name of the event.
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
-keyof IExecutorEvents | `K`
+The name of the event.
 
 ##### listener
 
-`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+(...`args`) => `void`
 
 The callback function
 
@@ -523,9 +550,9 @@ v0.1.101
 
 ### once()
 
-> **once**\<`K`\>(`eventName`, `listener`): `this`
+> **once**\<`E`\>(`eventName`, `listener`): `this`
 
-Defined in: node\_modules/@types/node/events.d.ts:659
+Defined in: node\_modules/@types/node/events.d.ts:256
 
 Adds a **one-time** `listener` function for the event named `eventName`. The
 next time `eventName` is triggered, this listener is removed and then invoked.
@@ -538,7 +565,8 @@ server.once('connection', (stream) => {
 
 Returns a reference to the `EventEmitter`, so that calls can be chained.
 
-By default, event listeners are invoked in the order they are added. The `emitter.prependOnceListener()` method can be used as an alternative to add the
+By default, event listeners are invoked in the order they are added. The
+`emitter.prependOnceListener()` method can be used as an alternative to add the
 event listener to the beginning of the listeners array.
 
 ```js
@@ -554,21 +582,21 @@ myEE.emit('foo');
 
 #### Type Parameters
 
-##### K
+##### E
 
-`K`
+`E` *extends* `string` \| `symbol`
 
 #### Parameters
 
 ##### eventName
 
-The name of the event.
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
-keyof IExecutorEvents | `K`
+The name of the event.
 
 ##### listener
 
-`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+(...`args`) => `void`
 
 The callback function
 
@@ -588,14 +616,15 @@ v0.3.0
 
 ### prependListener()
 
-> **prependListener**\<`K`\>(`eventName`, `listener`): `this`
+> **prependListener**\<`E`\>(`eventName`, `listener`): `this`
 
-Defined in: node\_modules/@types/node/events.d.ts:886
+Defined in: node\_modules/@types/node/events.d.ts:275
 
 Adds the `listener` function to the _beginning_ of the listeners array for the
 event named `eventName`. No checks are made to see if the `listener` has
 already been added. Multiple calls passing the same combination of `eventName`
-and `listener` will result in the `listener` being added, and called, multiple times.
+and `listener` will result in the `listener` being added, and called, multiple
+times.
 
 ```js
 server.prependListener('connection', (stream) => {
@@ -607,21 +636,21 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 #### Type Parameters
 
-##### K
+##### E
 
-`K`
+`E` *extends* `string` \| `symbol`
 
 #### Parameters
 
 ##### eventName
 
-The name of the event.
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
-keyof IExecutorEvents | `K`
+The name of the event.
 
 ##### listener
 
-`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+(...`args`) => `void`
 
 The callback function
 
@@ -641,11 +670,12 @@ v6.0.0
 
 ### prependOnceListener()
 
-> **prependOnceListener**\<`K`\>(`eventName`, `listener`): `this`
+> **prependOnceListener**\<`E`\>(`eventName`, `listener`): `this`
 
-Defined in: node\_modules/@types/node/events.d.ts:902
+Defined in: node\_modules/@types/node/events.d.ts:292
 
-Adds a **one-time**`listener` function for the event named `eventName` to the _beginning_ of the listeners array. The next time `eventName` is triggered, this
+Adds a **one-time** `listener` function for the event named `eventName` to the
+_beginning_ of the listeners array. The next time `eventName` is triggered, this
 listener is removed, and then invoked.
 
 ```js
@@ -658,21 +688,21 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 #### Type Parameters
 
-##### K
+##### E
 
-`K`
+`E` *extends* `string` \| `symbol`
 
 #### Parameters
 
 ##### eventName
 
-The name of the event.
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
-keyof IExecutorEvents | `K`
+The name of the event.
 
 ##### listener
 
-`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+(...`args`) => `void`
 
 The callback function
 
@@ -692,9 +722,9 @@ v6.0.0
 
 ### rawListeners()
 
-> **rawListeners**\<`K`\>(`eventName`): `K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
+> **rawListeners**\<`E`\>(`eventName`): (...`args`) => `void`[]
 
-Defined in: node\_modules/@types/node/events.d.ts:818
+Defined in: node\_modules/@types/node/events.d.ts:326
 
 Returns a copy of the array of listeners for the event named `eventName`,
 including any wrappers (such as those created by `.once()`).
@@ -726,19 +756,19 @@ emitter.emit('log');
 
 #### Type Parameters
 
-##### K
+##### E
 
-`K`
+`E` *extends* `string` \| `symbol`
 
 #### Parameters
 
 ##### eventName
 
-keyof IExecutorEvents | `K`
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
 #### Returns
 
-`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`[]
+(...`args`) => `void`[]
 
 #### Since
 
@@ -754,7 +784,7 @@ v9.4.0
 
 > **registerRunner**(`runners`): `this`
 
-Defined in: [src/lib/Executor/Typings.ts:326](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L326)
+Defined in: [src/lib/Executor/Typings.ts:328](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L328)
 
 Register a runner for a specific type of job.
 
@@ -762,9 +792,9 @@ Register a runner for a specific type of job.
 
 ##### runners
 
-The job runner object to register.
+[`IJobRunner`](IJobRunner.md) \| [`IJobRunner`](IJobRunner.md)[]
 
-[`IJobRunner`](IJobRunner.md) | [`IJobRunner`](IJobRunner.md)[]
+The job runner object to register.
 
 #### Returns
 
@@ -774,9 +804,9 @@ The job runner object to register.
 
 ### removeAllListeners()
 
-> **removeAllListeners**(`eventName?`): `this`
+> **removeAllListeners**\<`E`\>(`eventName?`): `this`
 
-Defined in: node\_modules/@types/node/events.d.ts:758
+Defined in: node\_modules/@types/node/events.d.ts:338
 
 Removes all listeners, or those of the specified `eventName`.
 
@@ -786,11 +816,17 @@ component or module (e.g. sockets or file streams).
 
 Returns a reference to the `EventEmitter`, so that calls can be chained.
 
+#### Type Parameters
+
+##### E
+
+`E` *extends* `string` \| `symbol`
+
 #### Parameters
 
 ##### eventName?
 
-`unknown`
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
 #### Returns
 
@@ -808,11 +844,12 @@ v0.1.26
 
 ### removeListener()
 
-> **removeListener**\<`K`\>(`eventName`, `listener`): `this`
+> **removeListener**\<`E`\>(`eventName`, `listener`): `this`
 
-Defined in: node\_modules/@types/node/events.d.ts:742
+Defined in: node\_modules/@types/node/events.d.ts:425
 
-Removes the specified `listener` from the listener array for the event named `eventName`.
+Removes the specified `listener` from the listener array for the event named
+`eventName`.
 
 ```js
 const callback = (stream) => {
@@ -829,8 +866,10 @@ listener array for the specified `eventName`, then `removeListener()` must be
 called multiple times to remove each instance.
 
 Once an event is emitted, all listeners attached to it at the
-time of emitting are called in order. This implies that any `removeListener()` or `removeAllListeners()` calls _after_ emitting and _before_ the last listener finishes execution
-will not remove them from`emit()` in progress. Subsequent events behave as expected.
+time of emitting are called in order. This implies that any
+`removeListener()` or `removeAllListeners()` calls _after_ emitting and
+_before_ the last listener finishes execution will not remove them from
+`emit()` in progress. Subsequent events behave as expected.
 
 ```js
 import { EventEmitter } from 'node:events';
@@ -865,14 +904,15 @@ myEmitter.emit('event');
 ```
 
 Because listeners are managed using an internal array, calling this will
-change the position indices of any listener registered _after_ the listener
+change the position indexes of any listener registered _after_ the listener
 being removed. This will not impact the order in which listeners are called,
 but it means that any copies of the listener array as returned by
 the `emitter.listeners()` method will need to be recreated.
 
 When a single function has been added as a handler multiple times for a single
 event (as in the example below), `removeListener()` will remove the most
-recently added instance. In the example the `once('ping')` listener is removed:
+recently added instance. In the example the `once('ping')`
+listener is removed:
 
 ```js
 import { EventEmitter } from 'node:events';
@@ -894,19 +934,19 @@ Returns a reference to the `EventEmitter`, so that calls can be chained.
 
 #### Type Parameters
 
-##### K
+##### E
 
-`K`
+`E` *extends* `string` \| `symbol`
 
 #### Parameters
 
 ##### eventName
 
-keyof IExecutorEvents | `K`
+`"error"` \| keyof EventEmitterEventMap \| `"task_error"` \| `E`
 
 ##### listener
 
-`K` *extends* keyof [`IExecutorEvents`](IExecutorEvents.md) ? [`IExecutorEvents`](IExecutorEvents.md)\[`K`\<`K`\>\] *extends* `unknown`[] ? (...`args`) => `void` : `never` : `never`
+(...`args`) => `void`
 
 #### Returns
 
@@ -926,12 +966,13 @@ v0.1.26
 
 > **setMaxListeners**(`n`): `this`
 
-Defined in: node\_modules/@types/node/events.d.ts:768
+Defined in: node\_modules/@types/node/events.d.ts:436
 
 By default `EventEmitter`s will print a warning if more than `10` listeners are
 added for a particular event. This is a useful default that helps finding
 memory leaks. The `emitter.setMaxListeners()` method allows the limit to be
-modified for this specific `EventEmitter` instance. The value can be set to `Infinity` (or `0`) to indicate an unlimited number of listeners.
+modified for this specific `EventEmitter` instance. The value can be set to
+`Infinity` (or `0`) to indicate an unlimited number of listeners.
 
 Returns a reference to the `EventEmitter`, so that calls can be chained.
 
@@ -959,7 +1000,7 @@ v0.3.5
 
 > **validateApiToken**(`token`): `boolean`
 
-Defined in: [src/lib/Executor/Typings.ts:289](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L289)
+Defined in: [src/lib/Executor/Typings.ts:291](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L291)
 
 Validate if the given API token is valid.
 

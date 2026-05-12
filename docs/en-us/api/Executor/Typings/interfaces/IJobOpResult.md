@@ -14,7 +14,7 @@ Defined in: [src/lib/Executor/Typings.ts:61](https://github.com/litert/xxl-job-i
 
 ### data?
 
-> `optional` **data**: `T`
+> `optional` **data?**: `T`
 
 Defined in: [src/lib/Executor/Typings.ts:75](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L75)
 
@@ -36,4 +36,4 @@ The code of the error, which is a number indicating the type of error.
 
 #### msg
 
-> **msg**: `null` \| `string`
+> **msg**: `string` \| `null`

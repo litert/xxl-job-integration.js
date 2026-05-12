@@ -2,7 +2,7 @@
 
 # Function: create()
 
-> **create**(`executor`, `listenOpts`, `fastifyOpts`): `Promise`\<`FastifyInstance`\<`RawServerDefault`, `IncomingMessage`, `ServerResponse`\<`IncomingMessage`\>, `FastifyBaseLogger`, `FastifyTypeProviderDefault`\>\>
+> **create**(`executor`, `listenOpts`, `fastifyOpts?`): `Promise`\<`FastifyInstance`\<`RawServerDefault`, `IncomingMessage`, `ServerResponse`\<`IncomingMessage`\>, `FastifyBaseLogger`, `FastifyTypeProviderDefault`\>\>
 
 Defined in: [src/lib/Listener/Fastify.ts:231](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Listener/Fastify.ts#L231)
 
@@ -24,7 +24,7 @@ The XXL-Job executor instance to handle the API requests.
 
 The options for the Fastify server to listen on.
 
-### fastifyOpts
+### fastifyOpts?
 
 `FastifyServerOptions` = `...`
 

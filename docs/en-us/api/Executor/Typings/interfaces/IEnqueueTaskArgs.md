@@ -10,7 +10,7 @@ The arguments for executors, to put a task to the queue.
 
 ### args
 
-> `readonly` **args**: `null` \| `string`
+> `readonly` **args**: `string` \| `null`
 
 Defined in: [src/lib/Executor/Typings.ts:98](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L98)
 
@@ -52,7 +52,7 @@ The time when the job was requested to run, as a UNIX timestamp in milliseconds.
 
 ### source?
 
-> `readonly` `optional` **source**: `object`
+> `readonly` `optional` **source?**: `object`
 
 Defined in: [src/lib/Executor/Typings.ts:117](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L117)
 

@@ -2,7 +2,7 @@
 
 # Interface: IExecutorEvents
 
-Defined in: [src/lib/Executor/Typings.ts:262](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L262)
+Defined in: [src/lib/Executor/Typings.ts:264](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L264)
 
 ## Properties
 
@@ -10,7 +10,7 @@ Defined in: [src/lib/Executor/Typings.ts:262](https://github.com/litert/xxl-job-
 
 > **error**: \[`unknown`\]
 
-Defined in: [src/lib/Executor/Typings.ts:264](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L264)
+Defined in: [src/lib/Executor/Typings.ts:266](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L266)
 
 ***
 
@@ -18,4 +18,4 @@ Defined in: [src/lib/Executor/Typings.ts:264](https://github.com/litert/xxl-job-
 
 > **task\_error**: \[[`IRunTaskArgs`](../type-aliases/IRunTaskArgs.md), `unknown`\]
 
-Defined in: [src/lib/Executor/Typings.ts:266](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L266)
+Defined in: [src/lib/Executor/Typings.ts:268](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L268)

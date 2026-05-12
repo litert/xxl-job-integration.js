@@ -63,6 +63,8 @@ interface ILogSection {
  * @warning This log manager stores all logs in memory, which is only suitable for testing or small-scale applications.
  *   For production use, consider using `FileLogManager` or implementing a custom log manager that writes to a more
  *   durable storage.
+ *
+ * @noInheritDoc
  */
 export class MemoryLogManager extends EventEmitter<LibXJ.ILogManagerEvents> implements LibXJ.ILogManager {
 

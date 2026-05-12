@@ -2,7 +2,7 @@
 
 # Interface: IMemoryLogManagerOptions
 
-Defined in: [src/lib/LogManagers/MemoryLogManager.ts:22](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L22)
+Defined in: [src/lib/LogManagers/MemoryLogManager.ts:23](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L23)
 
 The options for the `MemoryLogManager` class.
 
@@ -12,7 +12,7 @@ The options for the `MemoryLogManager` class.
 
 > **maxAgeMs**: `number`
 
-Defined in: [src/lib/LogManagers/MemoryLogManager.ts:33](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L33)
+Defined in: [src/lib/LogManagers/MemoryLogManager.ts:34](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L34)
 
 The maximum age of log sections to keep, in milliseconds.
 Log sections older than this will be deleted.
@@ -28,7 +28,7 @@ accumulate too many old log sections, which may use up too much disk space.
 
 > **timerIntervalMs**: `number`
 
-Defined in: [src/lib/LogManagers/MemoryLogManager.ts:45](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L45)
+Defined in: [src/lib/LogManagers/MemoryLogManager.ts:46](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L46)
 
 The interval at which to check for old log sections, in milliseconds.
 

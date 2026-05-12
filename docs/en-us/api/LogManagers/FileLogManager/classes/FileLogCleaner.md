@@ -2,7 +2,7 @@
 
 # Class: FileLogCleaner
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:91](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L91)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:92](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L92)
 
 The cleaner for old log files in the specified directory.
 
@@ -31,7 +31,7 @@ and removes them.
 
 > **new FileLogCleaner**(`opts`): `FileLogCleaner`
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:103](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L103)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:104](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L104)
 
 #### Parameters
 
@@ -53,7 +53,7 @@ Defined in: [src/lib/LogManagers/FileLogManager.ts:103](https://github.com/liter
 
 > **start**(): `void`
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:117](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L117)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:118](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L118)
 
 Start the timer to clean up old log files periodically.
 If the timer is already running, this method does nothing.
@@ -68,7 +68,7 @@ If the timer is already running, this method does nothing.
 
 > **stop**(): `void`
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:133](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L133)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:134](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L134)
 
 Stop the timer that cleans up old log files.
 If the timer is not running, this method does nothing.

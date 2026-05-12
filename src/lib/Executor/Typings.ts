@@ -220,6 +220,8 @@ export interface ILogRange {
  * The log manager interface.
  *
  * Implements the interface, to create a custom log manager/storage for the task logs.
+ *
+ * @noInheritDoc
  */
 export interface ILogManager extends EventEmitter<ILogManagerEvents> {
 

@@ -2,7 +2,7 @@
 
 # Interface: IFileLogCleanerEvents
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:28](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L28)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:29](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L29)
 
 The definition of the events emitted by the `FileLogCleaner` class.
 
@@ -12,7 +12,7 @@ The definition of the events emitted by the `FileLogCleaner` class.
 
 > **cleaned**: \[`string`, `number`\]
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:32](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L32)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:33](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L33)
 
 ***
 
@@ -20,4 +20,4 @@ Defined in: [src/lib/LogManagers/FileLogManager.ts:32](https://github.com/litert
 
 > **error**: \[`unknown`\]
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:30](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L30)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:31](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L31)

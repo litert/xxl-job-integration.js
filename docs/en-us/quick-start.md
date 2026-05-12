@@ -160,6 +160,13 @@ const adminApiClient = LibXJ.createAdminApiClient({
 // Create a log manager to manage the logs of the executed tasks.
 const logger = new MemoryLogManager({ maxAgeMs: 300000, timerIntervalMs: 60000 });
 
+// IMPORTANT:
+// Always listen on the `error` event of the log manager, to avoid uncaught exceptions when
+// any error occurs in the log manager (in background or asynchronous).
+logger.on('error', (e) => {
+    console.error('Log manager error:', e);
+});
+
 // Start the log GC timer, which will clean the old logs periodically.
 logger.startTimer();
 

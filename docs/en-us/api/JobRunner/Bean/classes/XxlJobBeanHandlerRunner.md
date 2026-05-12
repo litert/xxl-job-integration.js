@@ -56,7 +56,7 @@ Defined in: [src/lib/JobRunner/Bean.ts:69](https://github.com/litert/xxl-job-int
 
 ### prepare()
 
-> **prepare**(`args`): `null` \| [`IRunnerPrepareResult`](../../../Executor/Typings/interfaces/IRunnerPrepareResult.md)
+> **prepare**(`args`): [`IRunnerPrepareResult`](../../../Executor/Typings/interfaces/IRunnerPrepareResult.md) \| `null`
 
 Defined in: [src/lib/JobRunner/Bean.ts:58](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/JobRunner/Bean.ts#L58)
 
@@ -70,7 +70,7 @@ Prepare to run the task with the given arguments.
 
 #### Returns
 
-`null` \| [`IRunnerPrepareResult`](../../../Executor/Typings/interfaces/IRunnerPrepareResult.md)
+[`IRunnerPrepareResult`](../../../Executor/Typings/interfaces/IRunnerPrepareResult.md) \| `null`
 
 null if the task cannot be prepared, or an object containing settings for the task.
 

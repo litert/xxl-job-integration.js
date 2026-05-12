@@ -2,11 +2,15 @@
 
 # Interface: ILogManager
 
-Defined in: [src/lib/Executor/Typings.ts:224](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L224)
+Defined in: [src/lib/Executor/Typings.ts:226](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L226)
 
 The log manager interface.
 
 Implements the interface, to create a custom log manager/storage for the task logs.
+
+## Extends
+
+- `EventEmitter`\<[`ILogManagerEvents`](ILogManagerEvents.md)\>
 
 ## Methods
 
@@ -14,7 +18,7 @@ Implements the interface, to create a custom log manager/storage for the task lo
 
 > **close**(`taskId`): `void` \| `Promise`\<`void`\>
 
-Defined in: [src/lib/Executor/Typings.ts:238](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L238)
+Defined in: [src/lib/Executor/Typings.ts:240](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L240)
 
 Close the log section for the given task ID.
 
@@ -34,9 +38,9 @@ The task ID to close the log section for.
 
 ### get()
 
-> **get**(`taskId`, `startLine`, `datetime`): `null` \| [`ILogRange`](ILogRange.md) \| `Promise`\<`null` \| [`ILogRange`](ILogRange.md)\>
+> **get**(`taskId`, `startLine`, `datetime`): [`ILogRange`](ILogRange.md) \| `Promise`\<[`ILogRange`](ILogRange.md) \| `null`\> \| `null`
 
-Defined in: [src/lib/Executor/Typings.ts:259](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L259)
+Defined in: [src/lib/Executor/Typings.ts:261](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L261)
 
 Read a range of log for the given task ID, by the start line and datetime.
 
@@ -65,7 +69,7 @@ The datetime to read the log for.
 
 #### Returns
 
-`null` \| [`ILogRange`](ILogRange.md) \| `Promise`\<`null` \| [`ILogRange`](ILogRange.md)\>
+[`ILogRange`](ILogRange.md) \| `Promise`\<[`ILogRange`](ILogRange.md) \| `null`\> \| `null`
 
 ***
 
@@ -73,7 +77,7 @@ The datetime to read the log for.
 
 > **open**(`taskId`): `void` \| `Promise`\<`void`\>
 
-Defined in: [src/lib/Executor/Typings.ts:231](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L231)
+Defined in: [src/lib/Executor/Typings.ts:233](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L233)
 
 Initialize a log section for the given task ID.
 
@@ -95,7 +99,7 @@ The task ID to initialize the log section for.
 
 > **write**(`taskId`, `level`, `message`): `void`
 
-Defined in: [src/lib/Executor/Typings.ts:247](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L247)
+Defined in: [src/lib/Executor/Typings.ts:249](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Executor/Typings.ts#L249)
 
 Write a log message to the task log storage.
 

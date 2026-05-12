@@ -2,7 +2,7 @@
 
 # Interface: IFileLogManagerOptions
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:193](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L193)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:194](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L194)
 
 The options for the `FileLogManager` class.
 
@@ -12,7 +12,7 @@ The options for the `FileLogManager` class.
 
 > **logDir**: `string`
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:199](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L199)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:200](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L200)
 
 Where to store the log files.
 This directory will be created if it does not exist.
@@ -21,9 +21,9 @@ This directory will be created if it does not exist.
 
 ### maxLinesAtOnce?
 
-> `optional` **maxLinesAtOnce**: `number`
+> `optional` **maxLinesAtOnce?**: `number`
 
-Defined in: [src/lib/LogManagers/FileLogManager.ts:212](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L212)
+Defined in: [src/lib/LogManagers/FileLogManager.ts:213](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/FileLogManager.ts#L213)
 
 The maximum number of lines to read at once when fetching logs.
 This is to prevent memory overflow or performance issues.

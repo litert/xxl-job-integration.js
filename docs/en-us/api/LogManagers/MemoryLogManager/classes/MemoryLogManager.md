@@ -2,11 +2,21 @@
 
 # Class: MemoryLogManager
 
-Defined in: [src/lib/LogManagers/MemoryLogManager.ts:62](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L62)
+Defined in: [src/lib/LogManagers/MemoryLogManager.ts:69](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L69)
 
 The implementation of the `ILogManager` interface that writes logs to memory in a specified directory.
 
 This class manages log sections for different tasks, allowing you to open, close, write logs, and read logs by range.
+
+## Warning
+
+This log manager stores all logs in memory, which is only suitable for testing or small-scale applications.
+  For production use, consider using `FileLogManager` or implementing a custom log manager that writes to a more
+  durable storage.
+
+## Extends
+
+- `EventEmitter`\<[`ILogManagerEvents`](../../../Executor/Typings/interfaces/ILogManagerEvents.md)\>
 
 ## Implements
 
@@ -18,7 +28,7 @@ This class manages log sections for different tasks, allowing you to open, close
 
 > **new MemoryLogManager**(`opts`): `MemoryLogManager`
 
-Defined in: [src/lib/LogManagers/MemoryLogManager.ts:72](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L72)
+Defined in: [src/lib/LogManagers/MemoryLogManager.ts:79](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L79)
 
 #### Parameters
 
@@ -30,13 +40,17 @@ Defined in: [src/lib/LogManagers/MemoryLogManager.ts:72](https://github.com/lite
 
 `MemoryLogManager`
 
+#### Overrides
+
+`EventEmitter<LibXJ.ILogManagerEvents>.constructor`
+
 ## Methods
 
 ### close()
 
 > **close**(`taskId`): `void`
 
-Defined in: [src/lib/LogManagers/MemoryLogManager.ts:115](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L115)
+Defined in: [src/lib/LogManagers/MemoryLogManager.ts:124](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L124)
 
 Close the log section for the given task ID.
 
@@ -60,9 +74,9 @@ The task ID to close the log section for.
 
 ### get()
 
-> **get**(`taskId`, `startLine`): `null` \| [`ILogRange`](../../../Executor/Typings/interfaces/ILogRange.md)
+> **get**(`taskId`, `startLine`): [`ILogRange`](../../../Executor/Typings/interfaces/ILogRange.md) \| `null`
 
-Defined in: [src/lib/LogManagers/MemoryLogManager.ts:138](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L138)
+Defined in: [src/lib/LogManagers/MemoryLogManager.ts:147](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L147)
 
 Read a range of log for the given task ID, by the start line and datetime.
 
@@ -85,7 +99,7 @@ The start line to read from.
 
 #### Returns
 
-`null` \| [`ILogRange`](../../../Executor/Typings/interfaces/ILogRange.md)
+[`ILogRange`](../../../Executor/Typings/interfaces/ILogRange.md) \| `null`
 
 #### Implementation of
 
@@ -97,7 +111,7 @@ The start line to read from.
 
 > **open**(`taskId`): `void`
 
-Defined in: [src/lib/LogManagers/MemoryLogManager.ts:110](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L110)
+Defined in: [src/lib/LogManagers/MemoryLogManager.ts:119](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L119)
 
 Initialize a log section for the given task ID.
 
@@ -123,7 +137,7 @@ The task ID to initialize the log section for.
 
 > **startTimer**(): `void`
 
-Defined in: [src/lib/LogManagers/MemoryLogManager.ts:78](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L78)
+Defined in: [src/lib/LogManagers/MemoryLogManager.ts:87](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L87)
 
 #### Returns
 
@@ -135,7 +149,7 @@ Defined in: [src/lib/LogManagers/MemoryLogManager.ts:78](https://github.com/lite
 
 > **stopTimer**(): `void`
 
-Defined in: [src/lib/LogManagers/MemoryLogManager.ts:102](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L102)
+Defined in: [src/lib/LogManagers/MemoryLogManager.ts:111](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L111)
 
 #### Returns
 
@@ -147,7 +161,7 @@ Defined in: [src/lib/LogManagers/MemoryLogManager.ts:102](https://github.com/lit
 
 > **write**(`taskId`, `level`, `message`): `void`
 
-Defined in: [src/lib/LogManagers/MemoryLogManager.ts:126](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L126)
+Defined in: [src/lib/LogManagers/MemoryLogManager.ts:135](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/LogManagers/MemoryLogManager.ts#L135)
 
 Write a log message to the task log storage.
 

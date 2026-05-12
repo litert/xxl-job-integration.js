@@ -2,7 +2,7 @@
 
 # Enumeration: EApiResultCode
 
-Defined in: [src/lib/Errors.ts:147](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L147)
+Defined in: [src/lib/Errors.ts:160](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L160)
 
 ## Enumeration Members
 
@@ -10,7 +10,7 @@ Defined in: [src/lib/Errors.ts:147](https://github.com/litert/xxl-job-integratio
 
 > **BAD\_REQUEST**: `400`
 
-Defined in: [src/lib/Errors.ts:149](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L149)
+Defined in: [src/lib/Errors.ts:162](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L162)
 
 ***
 
@@ -18,7 +18,7 @@ Defined in: [src/lib/Errors.ts:149](https://github.com/litert/xxl-job-integratio
 
 > **EXECUTOR\_BUSY**: `402`
 
-Defined in: [src/lib/Errors.ts:151](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L151)
+Defined in: [src/lib/Errors.ts:164](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L164)
 
 ***
 
@@ -26,7 +26,7 @@ Defined in: [src/lib/Errors.ts:151](https://github.com/litert/xxl-job-integratio
 
 > **HANDLER\_FAILED**: `409`
 
-Defined in: [src/lib/Errors.ts:158](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L158)
+Defined in: [src/lib/Errors.ts:171](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L171)
 
 ***
 
@@ -34,7 +34,7 @@ Defined in: [src/lib/Errors.ts:158](https://github.com/litert/xxl-job-integratio
 
 > **INTERNAL\_SERVER\_ERROR**: `410`
 
-Defined in: [src/lib/Errors.ts:159](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L159)
+Defined in: [src/lib/Errors.ts:172](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L172)
 
 ***
 
@@ -42,7 +42,7 @@ Defined in: [src/lib/Errors.ts:159](https://github.com/litert/xxl-job-integratio
 
 > **JOB\_KILLED**: `408`
 
-Defined in: [src/lib/Errors.ts:157](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L157)
+Defined in: [src/lib/Errors.ts:170](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L170)
 
 ***
 
@@ -50,7 +50,7 @@ Defined in: [src/lib/Errors.ts:157](https://github.com/litert/xxl-job-integratio
 
 > **JOB\_QUEUE\_TOO\_DEEP**: `405`
 
-Defined in: [src/lib/Errors.ts:154](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L154)
+Defined in: [src/lib/Errors.ts:167](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L167)
 
 ***
 
@@ -58,7 +58,7 @@ Defined in: [src/lib/Errors.ts:154](https://github.com/litert/xxl-job-integratio
 
 > **JOB\_TYPE\_UNSUPPORTED**: `406`
 
-Defined in: [src/lib/Errors.ts:155](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L155)
+Defined in: [src/lib/Errors.ts:168](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L168)
 
 ***
 
@@ -66,7 +66,7 @@ Defined in: [src/lib/Errors.ts:155](https://github.com/litert/xxl-job-integratio
 
 > **LOG\_NOT\_FOUND**: `404`
 
-Defined in: [src/lib/Errors.ts:153](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L153)
+Defined in: [src/lib/Errors.ts:166](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L166)
 
 ***
 
@@ -74,7 +74,7 @@ Defined in: [src/lib/Errors.ts:153](https://github.com/litert/xxl-job-integratio
 
 > **OK**: `200`
 
-Defined in: [src/lib/Errors.ts:148](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L148)
+Defined in: [src/lib/Errors.ts:161](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L161)
 
 ***
 
@@ -82,7 +82,7 @@ Defined in: [src/lib/Errors.ts:148](https://github.com/litert/xxl-job-integratio
 
 > **TASK\_DISCARDED**: `407`
 
-Defined in: [src/lib/Errors.ts:156](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L156)
+Defined in: [src/lib/Errors.ts:169](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L169)
 
 ***
 
@@ -90,7 +90,7 @@ Defined in: [src/lib/Errors.ts:156](https://github.com/litert/xxl-job-integratio
 
 > **TASK\_NOT\_RUNNABLE**: `403`
 
-Defined in: [src/lib/Errors.ts:152](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L152)
+Defined in: [src/lib/Errors.ts:165](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L165)
 
 ***
 
@@ -98,4 +98,4 @@ Defined in: [src/lib/Errors.ts:152](https://github.com/litert/xxl-job-integratio
 
 > **UNAUTHORIZED**: `401`
 
-Defined in: [src/lib/Errors.ts:150](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L150)
+Defined in: [src/lib/Errors.ts:163](https://github.com/litert/xxl-job-integration.js/blob/master/src/lib/Errors.ts#L163)
