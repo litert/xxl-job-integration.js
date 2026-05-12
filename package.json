@@ -1,6 +1,6 @@
 {
   "name": "@litert/xxl-job-integration",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "A lightweight integration of XXL-Job for NodeJS.",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -35,24 +35,24 @@
   },
   "homepage": "https://github.com/litert/xxl-job-integration.js#readme",
   "devDependencies": {
-    "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "^19.6.0",
+    "@commitlint/cli": "^21.0.0",
+    "@commitlint/config-conventional": "^21.0.0",
     "@litert/eslint-plugin-rules": "^0.3.1",
-    "@litert/typeguard": "^1.4.0",
-    "@types/node": "^22.10.2",
+    "@litert/typeguard": "^1.4.2",
+    "@types/node": "^25.7.0",
     "fastify": "^5.3.3",
     "husky": "^9.1.7",
-    "typedoc": "^0.28.5",
-    "typedoc-plugin-markdown": "^4.6.4",
+    "typedoc": "^0.28.19",
+    "typedoc-plugin-markdown": "^4.11.0",
     "typedoc-plugin-no-inherit": "^1.6.1",
     "typedoc-vitepress-theme": "^1.1.2",
-    "typescript": "^5.7.2"
+    "typescript": "^6.0.3"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "@litert/utils-async": "^1.2.1",
-    "undici": "^7.10.0"
+    "@litert/utils-async": "^2.0.0",
+    "undici": "^8.2.0"
   }
 }
