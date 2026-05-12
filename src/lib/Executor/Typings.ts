@@ -221,7 +221,7 @@ export interface ILogRange {
  *
  * Implements the interface, to create a custom log manager/storage for the task logs.
  */
-export interface ILogManager {
+export interface ILogManager extends EventEmitter<ILogManagerEvents> {
 
     /**
      * Initialize a log section for the given task ID.
@@ -324,4 +324,12 @@ export interface IExecutor extends EventEmitter<IExecutorEvents> {
      * @param runners    The job runner object to register.
      */
     registerRunner(runners: IJobRunner | IJobRunner[]): this;
+}
+
+/**
+ * The events emitted by the log managers.
+ */
+export interface ILogManagerEvents {
+
+    error: [error: unknown];
 }

@@ -14,6 +14,7 @@
  *  limitations under the License.
  */
 
+import { EventEmitter } from 'node:stream';
 import * as LibXJ from '../Executor';
 
 /**
@@ -58,8 +59,12 @@ interface ILogSection {
  * The implementation of the `ILogManager` interface that writes logs to memory in a specified directory.
  *
  * This class manages log sections for different tasks, allowing you to open, close, write logs, and read logs by range.
+ *
+ * @warning This log manager stores all logs in memory, which is only suitable for testing or small-scale applications.
+ *   For production use, consider using `FileLogManager` or implementing a custom log manager that writes to a more
+ *   durable storage.
  */
-export class MemoryLogManager implements LibXJ.ILogManager {
+export class MemoryLogManager extends EventEmitter<LibXJ.ILogManagerEvents> implements LibXJ.ILogManager {
 
     private readonly _maxAgeMs: number;
 
@@ -70,6 +75,8 @@ export class MemoryLogManager implements LibXJ.ILogManager {
     private readonly _logs: Record<string, ILogSection> = {};
 
     public constructor(opts: IMemoryLogManagerOptions) {
+
+        super();
 
         this._maxAgeMs = opts.maxAgeMs;
         this._timerIntervalMs = opts.timerIntervalMs;

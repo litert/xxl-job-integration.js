@@ -16,9 +16,10 @@
 
 import type { Writable } from 'node:stream';
 import * as NodeRL from 'node:readline/promises';
-import * as LibXJ from '../Executor';
 import * as NodeFS from 'node:fs';
 import * as NodePath from 'node:path';
+import * as LibXJ from '../Executor';
+import * as eL from '../Errors';
 import { EventEmitter } from 'node:events';
 import { BackgroundRunner } from '@litert/utils-async';
 
@@ -224,7 +225,7 @@ export const DEFAULT_MAX_LINE_AT_ONCE = 1000;
  *
  * This class does not handle log file cleanup, so you may want to use `FileLogCleaner` to manage old log files.
  */
-export class FileLogManager implements LibXJ.ILogManager {
+export class FileLogManager extends EventEmitter<LibXJ.ILogManagerEvents> implements LibXJ.ILogManager {
 
     private readonly _logStreams: Record<number, Writable> = {};
 
@@ -233,6 +234,8 @@ export class FileLogManager implements LibXJ.ILogManager {
     private readonly _maxLinesAtOnce: number;
 
     public constructor(opts: IFileLogManagerOptions) {
+
+        super();
 
         this._logDir = opts.logDir;
         this._maxLinesAtOnce = opts.maxLinesAtOnce ?? DEFAULT_MAX_LINE_AT_ONCE;
@@ -263,6 +266,13 @@ export class FileLogManager implements LibXJ.ILogManager {
         }
 
         this._logStreams[taskId] ??= NodeFS.createWriteStream(this._getLogFilePath(taskId));
+        this._logStreams[taskId].on('error', (error) => this.emit('error', new eL.E_LOG_FAILED(
+            { taskId, time: Date.now(), reason: 'stream_error' },
+            error,
+        )));
+        this._logStreams[taskId].on('close', () => {
+            delete this._logStreams[taskId]; // in case the stream is closed unexpectedly
+        });
     }
 
     public close(taskId: number): void {
@@ -284,11 +294,26 @@ export class FileLogManager implements LibXJ.ILogManager {
 
         const stream = this._logStreams[taskId];
 
+        const now = new Date();
+
         if (!stream) {
+            this.emit('error', new eL.E_LOG_FAILED(
+                { time: now.getTime(), taskId, message, level, reason: 'no_such_task' },
+            ));
             return;
         }
 
-        stream.write(`[${new Date().toISOString()}][${level}] ${message}\n`);
+        try {
+
+            stream.write(`[${now.toISOString()}][${level}] ${message}\n`);
+        }
+        catch (error) {
+
+            this.emit('error', new eL.E_LOG_FAILED(
+                { time: now.getTime(), taskId, message, level, reason: 'write_failed' },
+                error,
+            ));
+        }
     }
 
     public async get(taskId: number, startLine: number): Promise<LibXJ.ILogRange | null> {

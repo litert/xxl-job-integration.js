@@ -144,6 +144,19 @@ export const E_REGISTER_FAILED = class extends XxlJobError {
     }
 };
 
+export const E_LOG_FAILED = class extends XxlJobError {
+
+    public constructor(ctx: Record<string, unknown> = {}, origin?: unknown) {
+
+        super(
+            'log_failed',
+            'Failed to write the log.',
+            ctx,
+            origin,
+        );
+    }
+};
+
 export enum EApiResultCode {
     OK = 200,
     BAD_REQUEST = 400,

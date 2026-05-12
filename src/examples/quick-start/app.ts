@@ -76,7 +76,9 @@ logCleaner.start();
 
 const executor = LibXJ.createExecutor({
     adminApiClient: adminApiClient,
-    logManager: new FileLogManager({ logDir: LOG_OUTPUT_DIR }),
+    logManager: new FileLogManager({ logDir: LOG_OUTPUT_DIR }).on('error', (e) => {
+        console.error('Log manager error:', e);
+    }),
 });
 
 executor.registerRunner([beanRunner, nodejsRunner]);
